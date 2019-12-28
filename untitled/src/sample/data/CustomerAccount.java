@@ -8,6 +8,7 @@ public class CustomerAccount extends Account {
     private Basket accBasket;
     private ArrayList<Order> orders = new ArrayList<Order>();
 
+    public CustomerAccount(){}
     public CustomerAccount(String login, String password, String role, Bill bill){
         super(login,password,role);
         this.bill=bill;

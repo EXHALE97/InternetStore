@@ -202,7 +202,7 @@ public class GraphicalInterfaceMenu {
             stage.close();
             showAuthorizationMenu();
         });
-        //+взаимодействие с каждой из кнопок "удаление", "редактирование".
+        //+взаимодействие с каждой из кнопок "удаление", "редактирование"(вызов функции editProduct)
         stage.show();
     };
     public void showBasket(){
@@ -462,6 +462,7 @@ public class GraphicalInterfaceMenu {
         });
         makeOrder.setOnAction(event -> {
             stage.close();
+            //createOrder();
             showOrder();
         });
         stage.show();

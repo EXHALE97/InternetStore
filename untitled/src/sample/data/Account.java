@@ -6,6 +6,7 @@ public class Account {
     private String password;
     private String role;
 
+    public Account(){}
     public Account(String l, String p, String r){
         login=l;
         password=p;

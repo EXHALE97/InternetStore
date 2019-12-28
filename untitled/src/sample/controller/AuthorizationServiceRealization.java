@@ -12,6 +12,7 @@ public class AuthorizationServiceRealization implements AuthorizationService{
 
     private ArrayList<Account> accounts = new ArrayList<Account>();
 
+
     public void setAccounts(String login, String password, String role){
         Account account = new Account(login,password,role);
         accounts.add(account);
@@ -39,7 +40,8 @@ public class AuthorizationServiceRealization implements AuthorizationService{
         else return false;
     };
 
-    public boolean isAuthorized(Account account){ //из-за отсутсвия в Account поля "статус" определить авторизацию невозможно.
+    public boolean isAuthorized(Account account){
+        //из-за отсутсвия в Account поля "статус" определить авторизацию невозможно.
         return true;
     };
 }

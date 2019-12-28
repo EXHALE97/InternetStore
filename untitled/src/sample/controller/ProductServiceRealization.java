@@ -27,6 +27,6 @@ public class ProductServiceRealization implements ProductService {
         return null;
     };
     public void updateProduct(Product product){
-
+    //невозможно реализовать данную функцию из-за нехватки входных данных: нам необходима информация, которую нужно заменять.
     };
 }

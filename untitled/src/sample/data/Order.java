@@ -18,9 +18,7 @@ public class Order {
     public Double getTotalCost(){return totalCost;}
 
     public CustomerAccount getCustomerAccount(){ return customerAccount; }
-    public void setCustomerAccount(CustomerAccount customerAccount) {
-        this.customerAccount = customerAccount;
-    }
+    public void setCustomerAccount(CustomerAccount customerAccount) { this.customerAccount = customerAccount; }
 
     public OrderInformation getOrderInformation(){return orderInformation;}
     public void setOrderInformation(OrderInformation orderInformation) { this.orderInformation = orderInformation; }
