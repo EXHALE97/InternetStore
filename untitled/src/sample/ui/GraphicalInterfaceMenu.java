@@ -13,20 +13,24 @@ import javafx.scene.Scene;
 import java.util.ArrayList;
 
 public class GraphicalInterfaceMenu {
+    private AuthorizationService asr;
+    private ProductService psr;
+    private OrderService osr;
+    private BasketService bsr;
 
     public GraphicalInterfaceMenu(AuthorizationServiceRealization asr,BasketServiceRealization bsr, OrderServiceRealization osr , ProductServiceRealization psr){
-    //для передачи всех списков(аккаунты, корзины, продукты, заказы) необходимо добавить новые поля в данный класс
-        // в диаграмме классов должна быть связь между данным классом и классами "серивсов"
+        this.asr=asr;
+        this.bsr=bsr;
+        this.osr=osr;
+        this.psr=psr;
     }
+
     public void showAllProducts(){
         Button allProducts = new Button("Все продукты");
         Button basket = new Button("Корзина");
         Button author = new Button("Войти");
         GridPane allProductsMenu = new GridPane();
-        //вывод продуктов невозможен из-за отсутствия доступа к списку продуктов
-
-        //тут должно быть создание списка продуктов, добавленного в VBox
-        //код ниже - макет списка продуктов
+        ArrayList<Product> products = psr.getAllProducts();
         VBox productsBox = new VBox();
         Label product1 = new Label("Продукт 1");
         Label product2 = new Label("Продукт 2");
@@ -71,6 +75,32 @@ public class GraphicalInterfaceMenu {
             stage.close();
             showAuthorizationMenu();
         });
+        prod1.setOnAction(actionEvent -> {
+            //мы не можем указать в какую коризну добавлять продукт поскольку на данный момент по диаграмме состояний пользователь еще не авторизован.
+            //создаем временную корзину, чтобы потом перенести ее данные в привязанную к пользователю, однако по данным диаграммам такой перенос будет невозможен.
+            Basket temp = new Basket();
+            putProductInBasket(products.get(0), temp);
+        });
+        prod2.setOnAction(actionEvent -> {
+            Basket temp = new Basket();
+            putProductInBasket(products.get(1), temp);
+        });
+        prod3.setOnAction(actionEvent -> {
+            Basket temp = new Basket();
+            putProductInBasket(products.get(2), temp);
+        });
+        prod4.setOnAction(actionEvent -> {
+            Basket temp = new Basket();
+            putProductInBasket(products.get(3), temp);
+        });
+        prod5.setOnAction(actionEvent -> {
+            Basket temp = new Basket();
+            putProductInBasket(products.get(4), temp);
+        });
+        prod6.setOnAction(actionEvent -> {
+            Basket temp = new Basket();
+            putProductInBasket(products.get(5), temp);
+        });
         stage.show();
 
     };
@@ -78,7 +108,8 @@ public class GraphicalInterfaceMenu {
         Button allProducts = new Button("Все продукты");
         Button basket = new Button("Корзина");
         Button author = new Button("Войти");
-        //макет редактирования продуктов(взаимодействие невозможно из-за ошибиок в диаграммах)
+
+
         Label prod1Label = new Label("Продукт 1");
         Button del1Button = new Button("Удалить");
         Button edit1Button = new Button("Редактировать");
@@ -171,7 +202,6 @@ public class GraphicalInterfaceMenu {
         editPanes.setVgap(5);
         editPanes.getColumnConstraints().add(new ColumnConstraints(250));
         editPanes.getColumnConstraints().add(new ColumnConstraints(250));
-        //конец макета
 
         GridPane editMenu = new GridPane();
         editMenu.getColumnConstraints().add(new ColumnConstraints(140));
@@ -190,6 +220,7 @@ public class GraphicalInterfaceMenu {
         Scene scene = new Scene(editMenu, 520, 300);
         stage.setScene(scene);
         stage.setTitle("Internet Shop");
+        ArrayList<Product> products = psr.getAllProducts();
         allProducts.setOnAction(event -> {
             stage.close();
             showAllProducts();
@@ -202,7 +233,14 @@ public class GraphicalInterfaceMenu {
             stage.close();
             showAuthorizationMenu();
         });
-        //+взаимодействие с каждой из кнопок "удаление", "редактирование"(вызов функции editProduct)
+        del1Button.setOnAction(actionEvent -> {
+           //на диаграмма классов в классе "СервисПродуктовРеализация" отсуствует функция удаления продуктов
+        });
+        edit1Button.setOnAction(actionEvent -> {
+            //не можем использовать функцию editProduct поскольку после авторизации мы не получаем значение аккаунта, который вошел в систему.
+        });
+        //для остальных кнопок идентично
+
         stage.show();
     };
     public void showBasket(){
@@ -210,7 +248,8 @@ public class GraphicalInterfaceMenu {
         Button basket = new Button("Корзина");
         Button author = new Button("Войти");
         GridPane basketMenu = new GridPane();
-
+        //для вывода товаров в корзине необходимо получить аккаунт, с которого пользователь был авторизован или же получить временную корзину, что
+        //не предусмотрено автором.
         //макет корзины
         GridPane basketPane = new GridPane();
         Label prod1 = new Label("Продукт 1");
@@ -257,6 +296,7 @@ public class GraphicalInterfaceMenu {
         Scene scene = new Scene(basketMenu, 400, 300);
         stage.setScene(scene);
         stage.setTitle("Internet Shop");
+
 
         allProducts.setOnAction(event -> {
             stage.close();
@@ -335,7 +375,7 @@ public class GraphicalInterfaceMenu {
         });
         logInButton.setOnAction(event -> {
             stage.close();
-            //вызов функции авторизации
+            // authorize();
             //если пользователь админ - переход в showEditMenu()
             //если же пользоватнль - переход в showOrderMenu()
             //данные действия выполняются в соответствии с диаграммой состояний
@@ -349,7 +389,7 @@ public class GraphicalInterfaceMenu {
         Button basket = new Button("Корзина");
         Button author = new Button("Войти");
 
-        //макет демонстрации заказа(реальный показ невозможен из-за отуствия доступа к списку заказов
+        //макет демонстрации заказа(реальный показ невозможен из-за отуствия доступа к списку заказов)
         GridPane orderCheckPane = new GridPane();
         Label prod1 = new Label("Продукт 1");
         Label colprod1 = new Label("Количество:");
@@ -460,7 +500,7 @@ public class GraphicalInterfaceMenu {
             stage.close();
             showBasket();
         });
-        makeOrder.setOnAction(event -> {
+        makeOrder.setOnAction(event -> {//так же нет доступа к аккаунту, который на данный момент авторизован в системе.
             stage.close();
             //createOrder();
             showOrder();
@@ -468,16 +508,21 @@ public class GraphicalInterfaceMenu {
         stage.show();
     };
     public void putProductInBasket(Product product, Basket basket){
-        //нет возможности реализовать данную функцию из-за отсуствия связи между данным классом и сервисом корзин.
+        bsr.putProduct(product, basket);
     };
-    public void createOrder(Account account, OrderInformation orderInformation, Order order){
-        //нет возможности вызвать функцию create из сервиса заказов из-за отсуствия связи между данным классом и сервисом.
+    public void createOrder(Account account, OrderInformation orderInformation, Order order){ //несовпадение значений. Тут мы подаем аккаунт, а в функции
+        //create в OrderServiceRealization нам нужен аккаунтПользоваеля.
     };
-    public void authorize(Account account){
-        //нет возможности вызвать функцию authorize из сервиса авторизации из-за отсуствия связи между данным классом и сервисом.
+    public void authorize(Account account){ //на вход подано неверное значение + неверное возвращаемое значение.
+        String login = account.getLogin();
+        String password = account.getPassword();
+        Account account1 = asr.authorize(login, password);
+        if (account1 == null) showAuthError();
     };
     public void editProduct(Product product, Account account){
-       //нет возмонжости вызвать функцию updateProduct из сервиса продуктов из-за отсутсвия связи между данным классом и сервисом.
+       if (account.getRole()=="admin"){
+           psr.updateProduct(product);
+       }
     };
     public void showAuthError(){
         Alert alert = new Alert(Alert.AlertType.ERROR);

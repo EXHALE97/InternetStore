@@ -19,6 +19,7 @@ public class ProductServiceRealization implements ProductService {
         product.setPrice(price);
         products.add(product);}
 
+
     public Product getProductOnIdentifier(String idtf){
         for (int i=0; i<products.size(); i++){
             if (products.get(i).getIdentifier() == idtf)

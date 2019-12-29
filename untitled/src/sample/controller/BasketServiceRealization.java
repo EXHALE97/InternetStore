@@ -32,7 +32,4 @@ public class BasketServiceRealization implements BasketService {
     public ArrayList<Basket> getBaskets() {
         return baskets;
     }
-    public void deleteBasket(Basket basket){
-        baskets.remove(basket);
-    }
 }

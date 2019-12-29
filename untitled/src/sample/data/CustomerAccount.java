@@ -16,7 +16,6 @@ public class CustomerAccount extends Account {
 
     public void setOrder(Order order){orders.add(order); }
     public ArrayList<Order> getOrders(){ return orders; }
-    public void deleteOrder(Order order){orders.remove(order);}
 
 
     public Bill getBill() { return bill; }

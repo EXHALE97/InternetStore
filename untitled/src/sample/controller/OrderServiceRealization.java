@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class OrderServiceRealization implements OrderService{
     private ArrayList<Order> orders = new ArrayList<Order>();
 
-    public Order create(CustomerAccount customerAccount){
+    public Order create(CustomerAccount customerAccount){ //необходмы данные, которые будут внесены в этот самый новый заказ.
         Order order = new Order();
         customerAccount.setOrder(order);
      return order;

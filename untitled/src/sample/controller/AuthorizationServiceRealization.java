@@ -20,9 +20,6 @@ public class AuthorizationServiceRealization implements AuthorizationService{
     public ArrayList<Account> getAccounts() {
         return accounts;
     }
-    public void deleteAccount(Account account){
-        accounts.remove(account);
-    }
 
     public Account authorize(String login, String password){
         Account temp;

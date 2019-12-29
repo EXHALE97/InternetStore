@@ -9,10 +9,6 @@ public class Basket {
 
     public void setProduct(Product product){products.add(product);}
     public ArrayList<Product> getProducts(){return products;}
-    public void deleteProduct(Product product){
-        products.remove(product);
-    }
-
     public Double getTotalCost() {return totalCost; }
     public void setTotalCost(Double totalCost) {this.totalCost = totalCost; }
 
