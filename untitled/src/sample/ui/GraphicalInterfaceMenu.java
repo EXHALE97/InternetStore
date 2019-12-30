@@ -18,7 +18,7 @@ public class GraphicalInterfaceMenu {
     private OrderService osr;
     private BasketService bsr;
 
-    public GraphicalInterfaceMenu(AuthorizationServiceRealization asr,BasketServiceRealization bsr, OrderServiceRealization osr , ProductServiceRealization psr){
+    public GraphicalInterfaceMenu(AuthorizationService asr,BasketService bsr, OrderService osr , ProductService psr){
         this.asr=asr;
         this.bsr=bsr;
         this.osr=osr;
