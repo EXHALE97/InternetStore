@@ -533,4 +533,16 @@ public class GraphicalInterfaceMenu {
 
         alert.showAndWait();
     };
+
+    public AuthorizationService getAuthorizationService(){return asr;}
+    public void setAuthorizationService(AuthorizationService asr){this.asr=asr;}
+
+    public BasketService getBasketService(){return bsr;}
+    public void setBasketService(BasketService bsr){this.bsr=bsr;}
+
+    public OrderService getOrderService(){return osr;}
+    public void setOrderService(OrderService osr){this.osr=osr;}
+
+    public ProductService getProductService(){return psr;}
+    public void setProductService(ProductService psr){this.psr=psr;}
 }
